@@ -1,0 +1,95 @@
+<!--signup.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home'%}">Your E-commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Add your navbar links here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signin_page'%}">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup_page' %}">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <div class="container mt-4">
+        <!-- Sign Up Form -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">Sign Up</h3>
+                      <form action="{% url 'create_customer' %}" method="post" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+                            {% csrf_token %}
+                                       
+                            <div class="form-group">
+                                <label for="first_name">first_name:</label>
+                                <input type="text" class="form-control" name="first_name" placeholder="Enter your first_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">last_name:</label>
+                                <input type="text" class="form-control" name="last_name" placeholder="Enter your last_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter your username">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="cus_phone">Contact number:</label>
+                                <input type="number" class="form-control" name="cus_phone" placeholder="Enter your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" name="password" placeholder="Enter your password">
+                            </div>
+                            <div class="form-group">
+                                <label for="cpassword">Confirm Password:</label>
+                                <input type="password" class="form-control" name="cpassword" placeholder="Confirm your password">
+                            </div>
+                            <div class="form-group">
+                                <label for="cus_address">enter address:</label>
+                                <textarea name="cus_address" name="cus_address" placeholder="enter address"  cols="30" rows="5"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <div class="container">
+            <p>&copy; 2023 Your E-commerce. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

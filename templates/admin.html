@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+     .custom-list-item {
+        margin-right: 280px; /* Adjust the margin value as needed */
+    }
+</style>
+<body>
+  
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home'%}">Your E-commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Add your navbar links here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'addproduct_page'%}">Add Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'product_list' %}">product list</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_home' %}">Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'orders' %}">Order details </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link custom-list-item" href="#"></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link custom-list-item" href="#"></a>
+                    </li>
+                    
+                    <li class="nav-item  ml-auto">
+                        <a class="nav-link" href="{% url 'logout' %}">log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+      <div class="container mt-5">
+          <h2>Add Category</h2>
+          <form method="post" action="{% url 'add_category' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="cat_name">Category Name:</label>
+                  <input type="text" class="form-control" id="cat_name" name="cat_name" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Category</button>
+          </form>
+      </div>
+
+   
+</body>
+</html>
+
+
+
+
+
+

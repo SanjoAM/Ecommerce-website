@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load cart_tag %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home'%}">Your E-commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Add your navbar links here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart_detail'  %}"> cart </a>
+                    </li>
+                    <li class="nav-item  ml-auto">
+                        <a class="nav-link" href="{% url 'logout' %}">log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container mt-5">
+    <h1>Shopping Cart</h1>
+    {% if request.session.cart.items  %}
+        <div class="row">
+            {% for key,value in request.session.cart.items %}
+                <div class="col-md-2 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ value.image}}" alt="{{ value.image }} image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ value.name }}</h5>
+                            <p class="card-text">Price: rs {{ value.price }}</p>
+                            <p class="card-text">Quantity: {{ value.quantity }}</p>
+                            <p class="card-text">total: Rs{{ value.price|multiply:value.quantity }}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        </div>
+        <a href="{% url 'cart_clear' %}" class="btn btn-danger">Clear cart</a>
+        <a href=" {% url 'confirmation' %}" class="btn btn-primary">Confirm Order</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

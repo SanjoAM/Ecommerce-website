@@ -1,0 +1,39 @@
+<!--add to cart.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body>
+    
+
+
+
+
+
+
+
+
+    <div class="container mt-5">
+        <h1>{{ product.prd_name }}</h1>
+        <p>{{ product.prd_description }}</p>
+        <img src="{{ product.prd_image.url }}" class="img-fluid" alt="{{ product.prd_name }}">
+        <form method="post" action="{% url 'add_to_cart' cartid %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1">
+          </div>
+          <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+      </div>
+
+
+</body>
+</html>

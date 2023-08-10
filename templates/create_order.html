@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    .custom-image{
+        max-width: 100%;
+        max-height: 200px; /* Adjust the maximum height as needed */
+        object-fit: contain ;}
+
+        .custom-list-item {
+        margin-right: 800px; /* Adjust the margin value as needed */
+    }    
+
+</style>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home'%}">Your E-commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Add your navbar links here -->
+                    <li class="nav-item">
+                        <a class="nav-link custom-list-item" href="{% url 'cart_detail'  %}"> <img src="{% static 'images/cart.svg' %}" width="40px" height="40px" alt=""></a>
+                    </li>
+                    <li class="nav-item  ml-auto">
+                        <a class="nav-link" href="{% url 'logout' %}">log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   <!-- <h2>Order Confirmation</h2>
+    
+    <h3>Order Summary:</h3>
+    
+    
+    
+    <label for="payment_method"><strong>Payment Method:</strong></label>
+    <select name="payment_method" id="payment_method">
+      <option value="upi">UPI Transaction</option>
+      <option value="cod">Cash on Delivery</option>
+    </select>    -->
+    {% for product_id, cart_item in request.session.cart.items %}
+    <form method="post" action="{% url 'create_order' %}"class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="product_name">product_name</label>
+            <input type="text" class="form-control" name="product_name" value="{{ cart_item.name }}">
+        </div>
+        <div class="form-group">
+            <label for="total_amount">price</label>
+            <input type="text" class="form-control" name="total_amount" value="{{ cart_item.price }}">
+        </div>
+        <label for="payment_method"><strong>Payment Method:</strong></label>
+        <select name="payment_method" id="payment_method">
+          <option value="upi">UPI Transaction</option>
+          <option value="cod">Cash on Delivery</option>
+        </select>
+
+        
+        <button type="submit">Place Order</button>
+    </form>
+    {% endfor %}
+</body>
+</html>
+
